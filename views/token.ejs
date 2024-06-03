@@ -20,13 +20,57 @@
             html {
                 font-family: Poppins, sans-serif;
             }
+            h1 {
+                font-size: 1rem;
+                word-wrap: break-word;
+                max-width: 500px;
+            }
+            button {
+                border-radius: 99999px;
+                font: inherit;
+                background-color: #555555; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            body {
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                flex-direction: column;
+                border: 1px solid rebeccapurple;
+            }
         </style>
     </head>
     <body>
         <% if (code) { %>
-        <h1><%= code %></h1>
+        <h1 id="codeText"><%= code %></h1>
+        <button id="copyButton">Copy Code</button>
         <% } else { %>
         <h1>No code available</h1>
-        <% } %> hello world!
+        <% } %>
+        <script>
+            document
+                .getElementById('copyButton')
+                .addEventListener('click', function () {
+                    var codeText =
+                        document.getElementById('codeText').textContent;
+                    var tempInput = document.createElement('textarea');
+                    tempInput.value = codeText;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                    alert('Code copied to clipboard, thank you!!');
+                });
+        </script>
     </body>
 </html>
