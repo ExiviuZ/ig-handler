@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 
 app.get('/redirect-uri', async (req, res) => {
     const code = req.query.code;
-    res.render('token', code);
+    res.render('token', { code });
 });
 
 app.get('/', async (req, res) => {
